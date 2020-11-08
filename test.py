@@ -32,7 +32,7 @@ while (fc < frameCount  and ret):
     gray_buf[fc] = rgb2gray(buf[fc])
 
     gray = np.float32(gray_buf[fc])
-    dst = cv2.cornerHarris(gray,2,3,0.04)
+    dst = cv2.cornerHarris(gray,2,3,0.1)
 
     #result is dilated for marking the corners, not important
     dst = cv2.dilate(dst,None)
@@ -51,8 +51,8 @@ while (fc < frameCount  and ret):
 
 cap.release()
 
-sf = 640
-ef = 600
+sf = marked_video.shape[2]
+ef = marked_video.shape[1]
 num_frames = marked_video.shape[0]
 writer = cv2.VideoWriter('gray_head.mp4', cv2.VideoWriter_fourcc(*'ffds'), 25, (sf, ef), True)
 for i in range(num_frames):
