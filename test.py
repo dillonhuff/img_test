@@ -23,15 +23,27 @@ while (fc < frameCount  and ret):
 
 cap.release()
 
-cv2.namedWindow('frame 10')
-cv2.imshow('frame 10', buf[9])
+# cv2.namedWindow('frame 10')
+# cv2.imshow('frame 10', buf[9])
 
-cv2.waitKey(0)
+# cv2.waitKey(0)
 
-import cv2
-import numpy as np
-
-writer = cv2.VideoWriter('test1.mp4', cv2.VideoWriter_fourcc(*'ffds'), 25, (640, 480), False)
+sf = 640
+writer = cv2.VideoWriter('gray_head.mp4', cv2.VideoWriter_fourcc(*'ffds'), 25, (sf, 480), False)
 for i in range(100):
-    x = np.random.randint(255, size=(480, 640)).astype('uint8')
+    x = np.random.randint(255, size=(480, sf)).astype('uint8')
     writer.write(x)
+
+# height = 640 
+# width = 480
+# writer = cv2.VideoWriter('gray_head.mp4', cv2.VideoWriter_fourcc(*'ffds'), 25, (height, width), False)
+# for i in range(100):
+    # x = np.random.randint(255, size=(height, width)).astype('uint8')
+    # writer.write(x)
+
+
+# writer = cv2.VideoWriter('gray_head.mp4', cv2.VideoWriter_fourcc(*'ffds'), 25, (480, 640), False)
+# for b in range(buf.shape[0]):
+    # # x = buf[b].astype('uint8')
+    # x = np.random.randint(255, size=(480, 640)).astype('uint8')
+    # writer.write(x)
