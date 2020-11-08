@@ -29,22 +29,10 @@ cap.release()
 # cv2.waitKey(0)
 
 sf = 640
+ef = 480
 num_frames = 200
-writer = cv2.VideoWriter('gray_head.mp4', cv2.VideoWriter_fourcc(*'ffds'), 25, (sf, 480), False)
+writer = cv2.VideoWriter('gray_head.mp4', cv2.VideoWriter_fourcc(*'ffds'), 25, (sf, ef), False)
 for i in range(num_frames):
-    x = np.random.randint(255, size=(480, sf)).astype('uint8')
+    x = np.random.randint(255, size=(ef, sf)).astype('uint8')
     writer.write(x)
 
-# height = 640 
-# width = 480
-# writer = cv2.VideoWriter('gray_head.mp4', cv2.VideoWriter_fourcc(*'ffds'), 25, (height, width), False)
-# for i in range(100):
-    # x = np.random.randint(255, size=(height, width)).astype('uint8')
-    # writer.write(x)
-
-
-# writer = cv2.VideoWriter('gray_head.mp4', cv2.VideoWriter_fourcc(*'ffds'), 25, (480, 640), False)
-# for b in range(buf.shape[0]):
-    # # x = buf[b].astype('uint8')
-    # x = np.random.randint(255, size=(480, 640)).astype('uint8')
-    # writer.write(x)
