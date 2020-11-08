@@ -22,6 +22,7 @@ print('Frame height:', frameHeight)
 
 buf = np.empty((frameCount, frameHeight, frameWidth, 3), np.dtype('uint8'))
 gray_buf = np.empty((frameCount, frameHeight, frameWidth), np.dtype('uint8'))
+marked_video = np.empty((frameCount, frameHeight, frameWidth, 3), np.dtype('uint8'))
 
 fc = 0
 ret = True
@@ -39,10 +40,11 @@ while (fc < frameCount  and ret):
     # Threshold for an optimal value, it may vary depending on the image.
     marked_img = buf[fc]
     marked_img[dst>0.01*dst.max()]=[0,0,255]
+    marked_video[fc] = marked_img
 
-    cv2.imshow('dst', marked_img)
-    if cv2.waitKey(0) & 0xff == 27:
-        cv2.destroyAllWindows()
+    # cv2.imshow('dst', marked_img)
+    # if cv2.waitKey(0) & 0xff == 27:
+        # cv2.destroyAllWindows()
 
     fc += 1
 
@@ -50,11 +52,11 @@ while (fc < frameCount  and ret):
 cap.release()
 
 sf = 640
-ef = 480
-num_frames = buf.shape[0]
+ef = 600
+num_frames = marked_video.shape[0]
 writer = cv2.VideoWriter('gray_head.mp4', cv2.VideoWriter_fourcc(*'ffds'), 25, (sf, ef), True)
 for i in range(num_frames):
-    frame = buf[i, 0:480, 0:640]
+    frame = marked_video[i, 0:ef, 0:sf]
     print('frame shape =', frame.shape)
     x = frame.astype('uint8')
     writer.write(x)
