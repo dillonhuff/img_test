@@ -30,9 +30,12 @@ cap.release()
 
 sf = 640
 ef = 480
-num_frames = 200
+num_frames = buf.shape[0]
 writer = cv2.VideoWriter('gray_head.mp4', cv2.VideoWriter_fourcc(*'ffds'), 25, (sf, ef), False)
 for i in range(num_frames):
-    x = np.random.randint(255, size=(ef, sf)).astype('uint8')
+    frame = buf[i, 0:480, 0:640, 0]
+    print('frame shape =', frame.shape)
+    # x = np.random.randint(255, size=(ef, sf)).astype('uint8')
+    x = frame.astype('uint8')
     writer.write(x)
 
