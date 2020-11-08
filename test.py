@@ -29,8 +29,9 @@ cap.release()
 # cv2.waitKey(0)
 
 sf = 640
+num_frames = 200
 writer = cv2.VideoWriter('gray_head.mp4', cv2.VideoWriter_fourcc(*'ffds'), 25, (sf, 480), False)
-for i in range(20):
+for i in range(num_frames):
     x = np.random.randint(255, size=(480, sf)).astype('uint8')
     writer.write(x)
 
